@@ -22,7 +22,7 @@ function Button() {
   return (
     <>
       <button onClick={increaseCounter}>
-        THIS IS A BUTTON WOOOOOOOOOOOOOOOOOOOOOOOO
+        THIS IS A BUTTON WOOOOOOOOOOOOOOOOOOOOOOOOO
       </button>
     </>
   );
