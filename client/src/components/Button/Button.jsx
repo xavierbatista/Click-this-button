@@ -21,8 +21,8 @@ function Button() {
 
   return (
     <>
-      <button onClick={increaseCounter}>
-        THIS IS A BUTTON WOOOOOOOOOOOOOOOOOOOOOOOOO
+      <button className="button" onClick={increaseCounter}>
+        Click this button
       </button>
     </>
   );

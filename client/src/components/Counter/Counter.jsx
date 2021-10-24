@@ -7,8 +7,10 @@ function Counter() {
 
   return (
     <div>
-      <h1>This button has been pressed</h1>
-      <h2>{count} times</h2>
+      <h1 className="main-header">This button has been clicked</h1>
+      <h2 className="counter">
+        <span className="count">{count}</span> times.
+      </h2>
     </div>
   );
 }
