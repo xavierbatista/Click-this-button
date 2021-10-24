@@ -20,7 +20,7 @@ const CounterProvider = ({ children }) => {
   useEffect(async () => {
     const response = await axios({
       method: 'get',
-      url: 'http://localhost:5000/count',
+      url: '/count',
     });
 
     const { totalCount } = response.data;
@@ -32,7 +32,7 @@ const CounterProvider = ({ children }) => {
   useInterval(async () => {
     const response = await axios({
       method: 'put',
-      url: 'http://localhost:5000/count',
+      url: '/count',
       data: {
         userClicks,
       },
