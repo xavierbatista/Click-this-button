@@ -25,16 +25,19 @@ app.get('/count', async (req, res) => {
 //updates the count
 app.put('/count', async (req, res) => {
   try {
-    const maxPossibleClicks = 85; //fastest humanly possible clicks in 5 seconds
-    const userClicks = Math.min(req.body.userClicks, maxPossibleClicks);
-    const updateCount = await pool.query(
-      'UPDATE count SET count = count + $1 WHERE count_id = 1 RETURNING *',
-      [userClicks]
-    );
+    if (typeof req.body.userClicks === 'number') {
+      const maxPossibleClicks = 85; //fastest humanly possible clicks in 5 seconds
+      const userClicks = Math.min(req.body.userClicks, maxPossibleClicks);
+      const updateCount = await pool.query(
+        'UPDATE count SET count = count + $1 WHERE count_id = 1 RETURNING *',
+        [userClicks]
+      );
 
-    const totalCount = updateCount.rows[0].count;
-
-    res.json({ totalCount }).status(201);
+      const totalCount = updateCount.rows[0].count;
+      return res.json({ totalCount }).status(201);
+    } else {
+      return res.status(500);
+    }
   } catch (error) {
     console.error(error.message);
   }
