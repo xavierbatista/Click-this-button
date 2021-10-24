@@ -2,9 +2,16 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const pool = require('./db');
+const path = require('path');
+const PORT = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
+
+// app.use(express.static(path.join('client/build')));
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join('client/build')));
+}
 
 //get the initial count
 app.get('/count', async (req, res) => {
@@ -43,6 +50,10 @@ app.put('/count', async (req, res) => {
   }
 });
 
-app.listen(5000, () => {
-  console.log('Server is listening on port', 5000);
+app.get('*', (req, res) => {
+  res.sendFile(path.join('client/build/index.html'));
+});
+
+app.listen(PORT, () => {
+  console.log('Server is listening on port', PORT);
 });
