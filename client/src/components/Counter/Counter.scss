@@ -8,8 +8,26 @@
   font-size: 50px;
 }
 
-.count{
+.count {
   font-size: 75px;
 }
 
+@media (max-width: 1120px) {
+  .main-header,
+  .counter {
+    font-size: 25px;
+  }
+  .count {
+    font-size: 50px;
+  }
+}
 
+@media (max-width: 700px) {
+  .main-header,
+  .counter {
+    font-size: 15px;
+  }
+  .count {
+    font-size: 30px;
+  }
+}

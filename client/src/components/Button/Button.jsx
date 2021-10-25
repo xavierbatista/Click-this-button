@@ -6,7 +6,6 @@ function Button() {
   const { count, setCount, userClicks, setUserClicks } =
     useContext(CounterContext);
 
-  //make this function increase userPresses instead of count
   const increaseCounter = () => {
     setUserClicks((userClicks) => {
       userClicks += 1;
