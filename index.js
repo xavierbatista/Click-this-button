@@ -32,7 +32,7 @@ app.get('/count', async (req, res) => {
 app.put('/count', async (req, res) => {
   try {
     if (typeof req.body.userClicks === 'number') {
-      const maxPossibleClicks = 85; //fastest humanly possible clicks in 5 seconds
+      const maxPossibleClicks = 500; //max clicks allowed to send in at once
       const userClicks = Math.min(req.body.userClicks, maxPossibleClicks);
       const updateCount = await pool.query(
         'UPDATE count SET count = count + $1 WHERE count_id = 1 RETURNING *',
