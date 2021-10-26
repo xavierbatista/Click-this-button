@@ -40,8 +40,12 @@ const CounterProvider = ({ children }) => {
 
     const { totalCount } = response.data;
 
-    setCount(totalCount);
-    setUserClicks(0);
+    if (totalCount > count) {
+      setCount(totalCount);
+      setUserClicks(0);
+    } else {
+      setUserClicks(count - totalCount);
+    }
   }, 5000);
 
   return (
