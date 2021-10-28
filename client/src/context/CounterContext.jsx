@@ -18,33 +18,41 @@ const CounterProvider = ({ children }) => {
 
   //sets initial count
   useEffect(async () => {
-    const response = await axios({
-      method: 'get',
-      url: '/count',
-    });
+    try {
+      const response = await axios({
+        method: 'get',
+        url: '/count',
+      });
 
-    const { totalCount } = response.data;
+      const { totalCount } = response.data;
 
-    setCount(totalCount);
+      setCount(totalCount);
+    } catch (error) {
+      console.error(error.message);
+    }
   }, []);
 
   //updates the count every 5 seconds
   useInterval(async () => {
-    const response = await axios({
-      method: 'put',
-      url: '/count',
-      data: {
-        userClicks,
-      },
-    });
+    try {
+      const response = await axios({
+        method: 'put',
+        url: '/count',
+        data: {
+          userClicks,
+        },
+      });
 
-    const { totalCount } = response.data;
+      const { totalCount } = response.data;
 
-    if (totalCount > count) {
-      setCount(totalCount);
-      setUserClicks(0);
-    } else {
-      setUserClicks(count - totalCount);
+      if (totalCount > count) {
+        setCount(totalCount);
+        setUserClicks(0);
+      } else {
+        setUserClicks(count - totalCount);
+      }
+    } catch (error) {
+      console.error(error.message);
     }
   }, 5000);
 
